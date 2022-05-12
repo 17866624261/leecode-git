@@ -1,3 +1,5 @@
+import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.Stack;
 
 public class Leecode_1047 {
@@ -7,7 +9,7 @@ public class Leecode_1047 {
     }
 
     public static String removeDuplicates(String s) {
-        Stack stack = new Stack();
+        Deque stack = new ArrayDeque();
         for (int i = 0; i < s.length(); i++) {
             char ch = s.charAt(i);
             if (stack.isEmpty() || !stack.peek().equals(ch)) {
