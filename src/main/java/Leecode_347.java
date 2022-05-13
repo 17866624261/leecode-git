@@ -19,7 +19,7 @@ public class Leecode_347 {
         PriorityQueue<Map.Entry<Integer, Integer>> queue = new PriorityQueue<>(((o1, o2) -> {return o1.getValue() - o2.getValue();}));
         for (Map.Entry<Integer, Integer> entry : entries) {
             queue.offer(entry);
-            // 只保留k个元素
+            // 只保留k个元素，因为是小顶堆，要把其他小的元素删掉
             if (queue.size() > k) {
                 queue.poll();
             }
