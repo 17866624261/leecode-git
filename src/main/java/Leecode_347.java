@@ -15,7 +15,7 @@ public class Leecode_347 {
         //
         Set<Map.Entry<Integer, Integer>> entries = map.entrySet();
         System.out.println(entries);
-        PriorityQueue<Map.Entry<Integer, Integer>> queue = new PriorityQueue<>(((o1, o2) -> o1.getValue() - o2.getValue()));
+        PriorityQueue<Map.Entry<Integer, Integer>> queue = new PriorityQueue<>(((o1, o2) -> {return o1.getValue() - o2.getValue();}));
         for (Map.Entry<Integer, Integer> entry : entries) {
             queue.offer(entry);
             // 只保留k个元素
