@@ -83,4 +83,75 @@ public class Leecode_treeforeach {
         Collections.reverse(res);
         return res;
     }
+
+    /**
+     * 树前序遍历，迭代遍历法-前中后序统一写法
+     *
+     * @param root
+     * @return
+     */
+    public List<Integer> preorderTraversal2(TreeNode root) {
+        List<Integer> res = new ArrayList<>();
+        Deque<TreeNode> stack = new LinkedList<>();
+        if (root == null) {
+            return res;
+        }
+        stack.push(root);
+        while (!stack.isEmpty()) {
+            TreeNode node = stack.peek();
+            if (node != null) {
+                stack.pop();
+                if (node.right != null) {
+                    stack.push(node.right);
+                }
+                if (node.left != null) {
+                    stack.push(node.left);
+                }
+                stack.push(node);
+                stack.push(null);
+            } else {
+                stack.pop();
+                node = stack.peek();
+                stack.pop();
+                res.add(node.val);
+            }
+        }
+        return res;
+    }
+
+    /**
+     * 树中序遍历，迭代遍历法-前中后序统一写法
+     *
+     * @param root
+     * @return
+     */
+    public List<Integer> inorderTraversal2(TreeNode root) {
+        List<Integer> res = new ArrayList<>();
+        Deque<TreeNode> stack = new LinkedList<>();
+        if (root == null) {
+            return res;
+        }
+        stack.push(root);
+        while (!stack.isEmpty()) {
+            TreeNode node = stack.peek();
+            if (node != null) {
+                stack.pop();
+                if (node.right != null) {
+                    stack.push(node.right);
+                }
+                stack.push(node);
+                stack.push(null);
+                if (node.left != null) {
+                    stack.push(node.left);
+                }
+            } else {
+                stack.pop();
+                node = stack.peek();
+                stack.pop();
+                res.add(node.val);
+            }
+        }
+        return res;
+    }
+
 }
