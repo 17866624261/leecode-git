@@ -14,6 +14,8 @@ public class Leetcode_714 {
                 minPrice = prices[i] - fee;
             }
         }
+        String s = "";
+        s.hashCode();
         return result;
     }
 }
