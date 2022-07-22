@@ -10,4 +10,18 @@ public class Leetcode_70 {
         }
         return dp[n];
     }
+
+    public int climbStairs2(int n, int m) {
+        if (n <= 2) return n;
+        int[] dp = new int[n + 1];
+        dp[0] = 1;
+        for (int i = 3; i <= n; i++) {
+            for (int j = 1; j <= m; j++) {
+                if (i >= j) {
+                    dp[i] += dp[i - j];
+                }
+            }
+        }
+        return dp[n];
+    }
 }
