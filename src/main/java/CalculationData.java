@@ -55,16 +55,16 @@ public class CalculationData {
     public static void main(String[] args) throws IOException, RowsExceededException, WriteException {
         DecimalFormat df = new DecimalFormat("0.00000 ");
         DecimalFormat dff = new DecimalFormat("0 ");
-        String filename = "yzr_perpkt";
+        String filename = "yzr_perpkt_d";
         CalculationData cl = new CalculationData("/Users/a/Desktop/generateJavaCode/PREDData/JavaGData/" + filename + ".xls");
-        File file = new File("/Users/a/Desktop/generateJavaCode/PREDData/originData/" + filename + ".txt");
+        File file = new File("/Users/a/Desktop/generateJavaCode/PREDData/originData/yzr_perpkt_d.txt");
         FileWriter writer = new FileWriter("/Users/a/Desktop/generateJavaCode/PREDData/JavaGData/data.txt", false);
 //		CalculationData cl = new CalculationData("/Users/a/Desktop/generateJavaCode/PREDData/JavaGData/"+filename+".xls");
 //		File file = new File("/Users/a/Desktop/generateJavaCode/PREDData/originData/yzr_perpkt.txt");
         Reader mr = null;
         String a = "";
         int SORT_T = 1000000;
-        int SORT = 18653;
+        int SORT = 20000;
 
         double tt[] = new double[SORT_T];
         double t1[] = new double[SORT];
@@ -93,12 +93,12 @@ public class CalculationData {
             // mr.read();
             while ((tempchar = mr.read()) != -1 && i < SORT) {
 
-                if (((char) tempchar) == '\r') {
+                if (((char) tempchar) == '\n') {
 //                    System.out.println(a);
                     t1[i] = Double.parseDouble(a);
                     a = "";
                     i++;
-                } else if (((char) tempchar) == '\n') {
+                } else if (((char) tempchar) == '\r') {
                     //t1[i] = Double.parseDouble(a);
                     a = "";
                     //i++;
