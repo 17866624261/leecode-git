@@ -13,4 +13,18 @@ public class Leetcode_53 {
         }
         return result;
     }
+
+    // 动态规划做法
+    public int maxSubArray2(int[] nums) {
+        if (nums.length == 0) return 0;
+        int result = nums[0];
+        // 包括下标i之前的最大连续字序列值和为dp[i]
+        int[] dp = new int[nums.length];
+        dp[0] = nums[0];
+        for (int i = 1; i < nums.length; i++) {
+            dp[i] = Math.max(dp[i - 1] + nums[i], nums[i]);
+            if (dp[i] > result) result = dp[i];
+        }
+        return result;
+    }
 }

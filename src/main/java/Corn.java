@@ -41,5 +41,10 @@ public class Corn {
     }
 }
 enum Day{
-    MON
+    MON("1");
+    private String num;
+
+    Day(String num) {
+        this.num = num;
+    }
 }
