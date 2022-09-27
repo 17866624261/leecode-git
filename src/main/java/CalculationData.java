@@ -3,14 +3,7 @@
  * ����Ҫ��������
  */
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.Reader;
+import java.io.*;
 import java.security.Provider;
 import java.text.DecimalFormat;
 
@@ -57,7 +50,8 @@ public class CalculationData {
         DecimalFormat dff = new DecimalFormat("0 ");
         String filename = "yzr_perpkt_d";
         CalculationData cl = new CalculationData("/Users/a/Desktop/generateJavaCode/PREDData/JavaGData/" + filename + ".xls");
-        File file = new File("/Users/a/Desktop/generateJavaCode/PREDData/originData/yzr_perpkt_d.txt");
+        CalculationData preData = new CalculationData("/Users/a/Desktop/generateJavaCode/PREDData/originData/preData.xls");
+        File file = new File("/Users/a/Desktop/generateJavaCode/PREDData/originData/perpkt_d_05.txt");
         FileWriter writer = new FileWriter("/Users/a/Desktop/generateJavaCode/PREDData/JavaGData/data.txt", false);
 //		CalculationData cl = new CalculationData("/Users/a/Desktop/generateJavaCode/PREDData/JavaGData/"+filename+".xls");
 //		File file = new File("/Users/a/Desktop/generateJavaCode/PREDData/originData/yzr_perpkt.txt");
@@ -68,6 +62,7 @@ public class CalculationData {
 
         double tt[] = new double[SORT_T];
         double t1[] = new double[SORT];
+        double predic[] = new double[SORT];
         int r1[] = new int[SORT];
         int i = 0;
         int j = 0;
@@ -85,6 +80,7 @@ public class CalculationData {
         double R6[] = new double[10];
         double R7[] = new double[10];
         double R8[] = new double[10];
+        double RR[] = new double[9];
 
         /* 1.������� */
         try {
@@ -93,12 +89,12 @@ public class CalculationData {
             // mr.read();
             while ((tempchar = mr.read()) != -1 && i < SORT) {
 
-                if (((char) tempchar) == '\n') {
+                if (((char) tempchar) == '\r') {
 //                    System.out.println(a);
                     t1[i] = Double.parseDouble(a);
                     a = "";
                     i++;
-                } else if (((char) tempchar) == '\r') {
+                } else if (((char) tempchar) == '\n') {
                     //t1[i] = Double.parseDouble(a);
                     a = "";
                     //i++;
@@ -356,6 +352,26 @@ public class CalculationData {
         }
 
         cl.printCell();
+        RR[1] = R1[9];
+        RR[2] = R2[9];
+        RR[3] = R3[9];
+        RR[4] = R4[9];
+        RR[5] = R5[9];
+        RR[6] = R6[9];
+        RR[7] = R7[9];
+        RR[8] = R8[9];
+        // 计算预测包数，t1[i]是第i个时间点的包数，r1[i]是第i个时间点的流量等级 Ri[9]是这个等级对应的转移等级
+        predic[0] = t1[0];
+        writer.write(df.format(predic[0])+"\n");
+//        preData.addOneCell(1,1,String.valueOf(predic[0]));
+        for (int l = 1; l < SORT; l++) {
+            predic[l] =  RR[r1[l-1]]/r1[l-1] * t1[l-1];
+            writer.write(df.format(predic[l])+"\n");
+//            preData.addOneCell(l+1,1,String.valueOf(df.format(predic[0])));
+        }
 
+//        for (int r: r1) {
+//            System.out.print(r+" ");
+//        }
     }
 }

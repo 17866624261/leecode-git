@@ -1,3 +1,5 @@
+import java.util.concurrent.locks.AbstractQueuedSynchronizer;
+
 public class Offer_12 {
     public boolean exist(char[][] board, String word) {
         boolean[][] visited = new boolean[board.length][board[0].length];

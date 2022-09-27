@@ -29,4 +29,21 @@ public class Offer_04 {
         Collections.sort(strings,(o1, o2) -> o1-o2);
         return false;
     }
+    public boolean findNumberIn2DArray(int[][] matrix, int target) {
+        if (matrix == null || matrix.length == 0){
+            return false;
+        }
+        int row = 0;
+        int col = matrix[0].length - 1;
+        while (row < matrix.length && col >=0){
+            if (matrix[row][col] == target){
+                return true;
+            }else if(matrix[row][col] > target){
+                col--;
+            }else {
+                row++;
+            }
+        }
+        return false;
+    }
 }
