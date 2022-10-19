@@ -27,4 +27,15 @@ public class Offer_07 {
         root.right = myBuildTree(preorder, inorder, size_left_subtree + pre_left + 1, pre_right, inorder_root + 1, in_right);
         return root;
     }
+
+    public TreeNode backTracking(int[] preorder, int[] inorder, int pre_left, int pre_right, int in_left, int in_right) {
+        if (pre_left > pre_right) return null;
+        int preorder_root = preorder[pre_left];
+        int inorder_root = indexMap.get(preorder_root);
+        TreeNode root = new TreeNode(preorder_root);
+        int size_left_subtree = inorder_root - in_left;
+        root.left = backTracking(preorder, inorder, pre_left + 1, size_left_subtree + pre_left, in_left, inorder_root - 1);
+        root.right = backTracking(preorder,inorder,size_left_subtree + pre_left + 1,pre_right,inorder_root + 1,in_right);
+        return root;
+    }
 }
