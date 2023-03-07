@@ -49,16 +49,16 @@ public class CalculationData {
         DecimalFormat df = new DecimalFormat("0.00000 ");
         DecimalFormat dff = new DecimalFormat("0 ");
         String filename = "yzr_perpkt_d";
-        CalculationData cl = new CalculationData("/Users/a/Desktop/generateJavaCode/PREDData/JavaGData/" + filename + ".xls");
-        CalculationData preData = new CalculationData("/Users/a/Desktop/generateJavaCode/PREDData/originData/preData.xls");
-        File file = new File("/Users/a/Desktop/generateJavaCode/PREDData/originData/perpkt_d_05.txt");
-        FileWriter writer = new FileWriter("/Users/a/Desktop/generateJavaCode/PREDData/JavaGData/data.txt", false);
+        CalculationData cl = new CalculationData("/Users/a/Desktop/generateJavaCode/0205/" + filename + ".xls");
+//        CalculationData preData = new CalculationData("/Users/a/Desktop/generateJavaCode/0205/preData.xlsx");
+        File file = new File("/Users/a/Desktop/generateJavaCode/0205/byte50.txt");
+        FileWriter writer = new FileWriter("/Users/a/Desktop/generateJavaCode/0205/data.txt", false);
 //		CalculationData cl = new CalculationData("/Users/a/Desktop/generateJavaCode/PREDData/JavaGData/"+filename+".xls");
 //		File file = new File("/Users/a/Desktop/generateJavaCode/PREDData/originData/yzr_perpkt.txt");
         Reader mr = null;
         String a = "";
         int SORT_T = 1000000;
-        int SORT = 20000;
+        int SORT = 7200;
 
         double tt[] = new double[SORT_T];
         double t1[] = new double[SORT];
